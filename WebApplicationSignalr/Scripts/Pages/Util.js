@@ -8,37 +8,46 @@ $(function () {
 
         notificar: function (mensagem) {
 
-            $("#h2msg").text(mensagem)
-            $.blockUI({
-                message: $('div.growlUI'),
-                fadeIn: 800,
-                fadeOut: 800,
-                timeout: 2000,
-                showOverlay: false,
-                centerY: false,
-                css: {
-                    width: '200px',
-                    bottom: '10px',
-                    top: '-100',
-                    left: '',
-                    right: '10px',
-                    border: 'non',
-                    padding: '5px',
-                    backgroundColor: '#000',
-                    '-webkit-border-radius': '10px',
-                    '-moz-border-radius': '10px',
-                    opacity: .6,
-                    color: '#fff',
-                }
+
+            toastr.success(mensagem, '', {
+
+                "positionClass": "toast-bottom-right"
             });
 
-            setTimeout(util.desbloquearTela, 2000);
+          //  $.growlUI('', mensagem);
+          //  $("#h2msg").text(mensagem)
+
+          
+            //$.blockUI({
+            //    message: $('div.growlUI'),
+            //    fadeIn: 800,
+            //    fadeOut: 800,
+            //    timeout: 2000,
+            //    showOverlay: false,
+            //    centerY: false,
+            //    css: {
+            //        width: '200px',
+            //        bottom: '10px',
+            //        top: '-100',
+            //        left: '',
+            //        right: '10px',
+            //        border: 'non',
+            //        padding: '5px',
+            //        backgroundColor: '#000',
+            //        '-webkit-border-radius': '10px',
+            //        '-moz-border-radius': '10px',
+            //        opacity: .6,
+            //        color: '#fff',
+            //    }
+            //});
+
+          //  setTimeout(util.desbloquearTela, 2000);
                      
         },
         bloquearTela: function () {
 
             $.blockUI({
-                message: '<span class="glyphicon glyphicon-refresh glyphicon-spin" style="width:50px"></span>',
+                message: $("#loaddiv"),
                 css: {
                     padding: 0,
                     margin: 0,
@@ -84,7 +93,7 @@ $(function () {
         beforeSend: function () {
 
             $("#loaddiv").show();
-           // util.bloquearTela();           
+            util.bloquearTela();           
         },
         complete: function () {
             util.desbloquearTela();
